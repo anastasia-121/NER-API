@@ -1,3 +1,4 @@
+from app.main import nlp
 from io import StringIO
 import csv
 
