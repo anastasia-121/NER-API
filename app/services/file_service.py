@@ -1,8 +1,5 @@
 from io import StringIO
 import csv
-import spacy
-
-nlp = spacy.load("en_core_web_sm")
 
 def extract_entities_from_text(text):
     processed_text = nlp(text)
