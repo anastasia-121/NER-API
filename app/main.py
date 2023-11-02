@@ -1,3 +1,4 @@
+import spacy
 from fastapi import FastAPI
 from transformers import pipeline
 from app.api.endpoints import recognize_entities, upload_file
