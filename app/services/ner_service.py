@@ -1,4 +1,3 @@
-import spacy
 from fastapi import HTTPException
 from io import StringIO
 import csv
