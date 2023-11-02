@@ -3,3 +3,5 @@ uvicorn[standard]
 spacy
 pydantic
 starlette
+pyspellchecker
+transformers
