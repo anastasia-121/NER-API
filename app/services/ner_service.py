@@ -5,8 +5,6 @@ import csv
 
 from app.api.models import TextInput
 
-nlp = spacy.load("en_core_web_sm")
-
 async def recognize_entities(data: TextInput):
         if not data.text:
         raise HTTPException(status_code=400, detail="No text provided")
