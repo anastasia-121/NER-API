@@ -1,7 +1,9 @@
 from fastapi import APIRouter, File, UploadFile, HTTPException
-from app.services.ner_service import recognize_entities, process_uploaded_file
+from spellchecker import SpellChecker
+from app.services.ner_service import recognize_entities, process_uploaded_file, spelling_corrector
 
 router = APIRouter()
+spell = SpellChecker()
 
 @router.post("/ner")
 async def recognize_entities():
@@ -50,3 +52,14 @@ async def upload_file(file: UploadFile = File(...)):
             raise HTTPException(status_code=500, detail="Error processing uploaded file")
     else:
         raise HTTPException(status_code=400, detail="Only .txt files are allowed")
+
+@app.post("/spelling_corrector")
+async def spelling_corrector(input: TextInput):
+    misspelled = spell.unknown(input.text.split())
+    if bool(misspelled) == True :
+        corrected_text_oliverguhr = \
+            nlp_oliverguhr(input.text, max_length=50, num_return_sequences=1, clean_up_tokenization_spaces=True)[0]['generated_text']
+        return {"corrected_text": corrected_text_oliverguhr}
+
+    else:
+        return {"This text is correct": input.text}
