@@ -1,5 +1,6 @@
 from fastapi import APIRouter, File, UploadFile, HTTPException
 from spellchecker import SpellChecker
+from app.api.models import TextInput
 from app.services.ner_service import recognize_entities, process_uploaded_file, spelling_corrector
 
 router = APIRouter()
